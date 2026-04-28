@@ -13,8 +13,8 @@ body {
 
 .hero {
   min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.65)),
-              url("https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?auto=format&fit=crop&w=1600&q=80");
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+              url("https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1600&q=80");
   background-size: cover;
   background-position: center;
   color: white;
@@ -35,7 +35,7 @@ nav h2 {
 nav a {
   color: white;
   text-decoration: none;
-  margin-left: 18px;
+  margin-left: 20px;
   font-weight: bold;
 }
 
@@ -44,12 +44,12 @@ nav a:hover {
 }
 
 .hero-content {
-  max-width: 760px;
+  max-width: 700px;
   padding: 140px 8%;
 }
 
 .hero-content h1 {
-  font-size: 62px;
+  font-size: 58px;
   line-height: 1.1;
   margin-bottom: 20px;
 }
@@ -87,7 +87,7 @@ button:hover {
 
 .section-intro {
   text-align: center;
-  max-width: 750px;
+  max-width: 700px;
   margin: 0 auto 40px;
   font-size: 18px;
 }
@@ -115,46 +115,6 @@ button:hover {
 .dark {
   background: #111;
   color: white;
-}
-
-.atlanta-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.atlanta-card {
-  min-height: 270px;
-  border-radius: 20px;
-  padding: 25px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-}
-
-.atlanta-card h3 {
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.beltline {
-  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.78)),
-  url("https://images.unsplash.com/photo-1575917649705-5b59aaa12e6b?auto=format&fit=crop&w=900&q=80");
-}
-
-.piedmont {
-  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.78)),
-  url("https://images.unsplash.com/photo-1601397219552-43f1c7a7397f?auto=format&fit=crop&w=900&q=80");
-}
-
-.midtown {
-  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.78)),
-  url("https://images.unsplash.com/photo-1612899326681-6650899c743e?auto=format&fit=crop&w=900&q=80");
 }
 
 .timeline {
@@ -194,43 +154,6 @@ button:hover {
   margin-top: 12px;
   font-weight: bold;
   color: #333;
-}
-
-.shoe-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 35px;
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-}
-
-.shoe-table th {
-  background: #111;
-  color: #9cff38;
-  padding: 16px;
-  text-align: left;
-}
-
-.shoe-table td {
-  padding: 16px;
-  border-bottom: 1px solid #ddd;
-}
-
-.shoe-table tr:hover {
-  background: #f1ffe7;
-}
-
-.price {
-  font-weight: bold;
-  color: #2e7d32;
-}
-
-.shoe-note {
-  margin-top: 20px;
-  font-size: 15px;
-  color: #444;
 }
 
 .exercise-list {
@@ -291,19 +214,9 @@ footer {
 
   nav a {
     margin: 8px;
-    display: inline-block;
   }
 
   .hero-content h1 {
-    font-size: 42px;
-  }
-
-  .shoe-table {
-    font-size: 13px;
-  }
-
-  .shoe-table th,
-  .shoe-table td {
-    padding: 10px;
+    font-size: 40px;
   }
 }
