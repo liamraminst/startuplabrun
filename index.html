@@ -1,1 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RunStrong ATL | Atlanta Running Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --lime: #c8ff00;
+      --red: #ff3b3b;
+      --black: #0a0a0a;
+      --dark: #111411;
+      --mid: #1a1f1a;
+      --card: #1e231e;
+      --white: #f5f5f0;
+      --muted: #888f88;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 6%;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,255,0,0.1);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--lime);
+      letter-spacing: 2px;
+    }
+    .nav-logo span { color: var(--white); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--lime); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 6% 80px;
+      background:
+        linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.5) 50%, rgba(10,10,10,0.2) 100%),
+        url('https://images.unsplash.com/photo-1571008887538-b36bb32f4571?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+    }
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--lime);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 10vw, 130px);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.4s forwards;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--lime);
+      -webkit-text-stroke: 0px;
+    }
+    .hero-sub {
+      max-width: 520px;
+      font-size: 17px;
+      color: rgba(245,245,240,0.7);
+      margin-bottom: 40px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.6s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.8s forwards;
+    }
+    .btn-primary {
+      background: var(--lime);
+      color: var(--black);
+      border: none;
+      padding: 16px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: white; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(245,245,240,0.3);
+      padding: 16px 32px;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
+
+    /* ATL SECTION */
+    .atl-section {
+      padding: 100px 6%;
+      background: var(--dark);
+    }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+    .atl-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(42px, 5vw, 72px);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .atl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 60px;
+      align-items: start;
+    }
+    .atl-text p {
+      color: rgba(245,245,240,0.65);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .atl-routes {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .route-card {
+      background: var(--card);
+      border: 1px solid rgba(200,255,0,0.08);
+      border-radius: 12px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .route-card:hover { border-color: rgba(200,255,0,0.35); transform: translateX(4px); }
+    .route-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      color: var(--lime);
+      line-height: 1;
+      min-width: 48px;
+    }
+    .route-info h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .route-info p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .route-badge {
+      margin-left: auto;
+      background: rgba(200,255,0,0.1);
+      color: var(--lime);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    /* BASICS */
+    #basics {
+      padding: 100px 6%;
+    }
+    .basics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .basics-card {
+      background: var(--card);
+      border: 1px solid rgba(245,245,240,0.06);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .basics-card:hover { transform: translateY(-4px); border-color: rgba(200,255,0,0.25); }
+    .basics-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--lime);
+    }
+    .card-icon { font-size: 32px; margin-bottom: 16px; }
+    .basics-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .basics-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* PLAN */
+    #plan {
+      padding: 100px 6%;
+      background: var(--dark);
+    }
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .plan-card {
+      background: var(--mid);
+      border-radius: 16px;
+      padding: 32px 28px;
+      border-left: 4px solid var(--lime);
+      transition: transform 0.2s;
+    }
+    .plan-card:hover { transform: translateY(-4px); }
+    .week-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: var(--lime);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .plan-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .plan-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .plan-tip {
+      margin-top: 16px;
+      background: rgba(200,255,0,0.07);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: rgba(200,255,0,0.8);
+      font-style: italic;
+    }
+
+    /* SHOES */
+    #shoes {
+      padding: 100px 6%;
+    }
+    .foot-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 40px 0 48px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: var(--card);
+      border: 1px solid rgba(245,245,240,0.1);
+      color: var(--muted);
+      padding: 10px 24px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--lime);
+      color: var(--black);
+      border-color: var(--lime);
+    }
+    .foot-panel { display: none; }
+    .foot-panel.active { display: block; }
+    .foot-desc {
+      background: var(--card);
+      border-left: 4px solid var(--lime);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      font-size: 15px;
+      color: rgba(245,245,240,0.75);
+      line-height: 1.7;
+    }
+    .foot-desc strong { color: var(--lime); }
+    .price-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .tier {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(245,245,240,0.06);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .tier:hover { transform: translateY(-4px); border-color: rgba(200,255,0,0.2); }
+    .tier-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tier-header.budget { background: #1a2a1a; border-bottom: 2px solid #4caf50; }
+    .tier-header.mid-range { background: #1a1a2a; border-bottom: 2px solid #5c6bc0; }
+    .tier-header.premium { background: #2a1a1a; border-bottom: 2px solid #ff7043; }
+    .tier-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+    .tier-label.budget { color: #4caf50; }
+    .tier-label.mid-range { color: #9fa8da; }
+    .tier-label.premium { color: #ff8a65; }
+    .tier-price {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .shoe-list { padding: 20px 24px; }
+    .shoe-item {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(245,245,240,0.05);
+    }
+    .shoe-item:last-child { border-bottom: none; }
+    .shoe-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+    .shoe-detail { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .shoe-price {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--lime);
+    }
+
+    /* INJURIES */
+    #injuries {
+      padding: 100px 6%;
+      background: var(--dark);
+    }
+    .injury-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .injury-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 30px 28px;
+      border: 1px solid rgba(245,245,240,0.06);
+      transition: transform 0.2s;
+    }
+    .injury-card:hover { transform: translateY(-4px); }
+    .injury-icon { font-size: 28px; margin-bottom: 14px; }
+    .injury-card h3 { font-size: 19px; font-weight: 700; color: var(--lime); margin-bottom: 10px; }
+    .injury-card p { font-size: 14px; color: var(--muted); margin-bottom: 14px; line-height: 1.7; }
+    .injury-tip {
+      background: rgba(200,255,0,0.06);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: rgba(200,255,0,0.75);
+      line-height: 1.6;
+    }
+    .atl-note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: rgba(255,59,59,0.7);
+      font-style: italic;
+    }
+
+    /* STRENGTH */
+    .strength-section {
+      padding: 100px 6%;
+    }
+    .ex-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 16px;
+      margin-top: 60px;
+    }
+    .ex-item {
+      background: var(--card);
+      border: 1px solid rgba(200,255,0,0.1);
+      border-radius: 12px;
+      padding: 22px 16px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .ex-item:hover { background: var(--lime); color: var(--black); transform: scale(1.04); }
+    .ex-item .ex-icon { font-size: 24px; display: block; margin-bottom: 8px; }
+
+    /* CHECKLIST */
+    #checklist {
+      padding: 100px 6%;
+      background: var(--dark);
+    }
+    .checklist-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .check-item {
+      background: var(--card);
+      border: 1px solid rgba(245,245,240,0.06);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .check-item input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--lime);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .check-item:has(input:checked) {
+      border-color: rgba(200,255,0,0.3);
+      background: rgba(200,255,0,0.04);
+    }
+    .check-actions { margin-top: 32px; display: flex; justify-content: center; }
+    #result {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Space Mono', monospace;
+      min-height: 28px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(245,245,240,0.08);
+      padding: 48px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: gap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--lime);
+      letter-spacing: 2px;
+    }
+    .footer-text { font-size: 13px; color: var(--muted); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .atl-grid { grid-template-columns: 1fr; }
+      .price-tiers { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      nav ul { display: none; }
+      .hero h1 { font-size: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Run<span>Strong</span> <span style="color:var(--lime);font-size:18px;">ATL</span></div>
+    <ul>
+      <li><a href="#atl">ATL Scene</a></li>
+      <li><a href="#basics">Basics</a></li>
+      <li><a href="#plan">Plan</a></li>
+      <li><a href="#shoes">Shoes</a></li>
+      <li><a href="#injuries">Injuries</a></li>
+      <li><a href="#checklist">Checklist</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-tag">🍑 Atlanta Running Guide</div>
+    <h1>Run <em>ATL.</em><br>Run Smart.<br>Stay Strong.</h1>
+    <p class="hero-sub">The Atlanta runner's guide to staying injury-free — from Piedmont hills to BeltLine miles, humid summer long runs to Peachtree race day.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="document.getElementById('checklist').scrollIntoView({behavior:'smooth'})">Get My Safety Checklist</button>
+      <button class="btn-outline" onclick="document.getElementById('shoes').scrollIntoView({behavior:'smooth'})">Find My Shoes</button>
+    </div>
+  </header>
+
+  <!-- ATL RUNNING SCENE -->
+  <section id="atl" class="atl-section">
+    <div class="section-label">// Atlanta Running Scene</div>
+    <h2>The ATL Running Community</h2>
+    <div class="atl-grid">
+      <div class="atl-text">
+        <p>Atlanta has one of the most vibrant running cultures in the South. From the iconic <strong>Peachtree Road Race</strong> — the world's largest 10K — to packed Saturday morning runs on the BeltLine, the city never stops moving.</p>
+        <p>The heat and humidity hit different here. Summer runs demand extra hydration, early start times, and heat-adapted training. But Atlanta runners are tough — those hills build legs that crush flat courses.</p>
+        <p>Whether you're a Midtown regular or out in Alpharetta, connecting with local run clubs like <strong>Atlanta Track Club</strong>, <strong>Black Men Run</strong>, or neighborhood crews makes the miles fly by.</p>
+      </div>
+      <div class="atl-routes">
+        <div class="route-card">
+          <div class="route-num">01</div>
+          <div class="route-info">
+            <h4>Atlanta BeltLine (Eastside Trail)</h4>
+            <p>Paved, flat, 2.25 miles — perfect for easy runs, meets, and weekend long runs. Always busy on weekends.</p>
+          </div>
+          <div class="route-badge">Beginner ✓</div>
+        </div>
+        <div class="route-card">
+          <div class="route-num">02</div>
+          <div class="route-info">
+            <h4>Piedmont Park Loop</h4>
+            <p>~2.5 mile perimeter loop. Flat to rolling, great for tempo runs and people-watching.</p>
+          </div>
+          <div class="route-badge">All Levels</div>
+        </div>
+        <div class="route-card">
+          <div class="route-num">03</div>
+          <div class="route-info">
+            <h4>Stone Mountain Trail</h4>
+            <p>5-mile loop around the mountain with elevation gain. Ideal for race prep and building leg strength.</p>
+          </div>
+          <div class="route-badge">Intermediate</div>
+        </div>
+        <div class="route-card">
+          <div class="route-num">04</div>
+          <div class="route-info">
+            <h4>Chastain Park</h4>
+            <p>Buckhead's go-to loop — 2.6 miles with gentle hills. Popular for early morning runs before work.</p>
+          </div>
+          <div class="route-badge">All Levels</div>
+        </div>
+        <div class="route-card">
+          <div class="route-num">05</div>
+          <div class="route-info">
+            <h4>Peachtree Road Race Course</h4>
+            <p>6.2 miles down Peachtree from Buckhead to Midtown. Train the course, know the hills at miles 2 and 4.</p>
+          </div>
+          <div class="route-badge">Race Prep 🍑</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BASICS -->
+  <section id="basics">
+    <div style="padding: 100px 6% 0;">
+      <div class="section-label">// Injury Prevention</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);letter-spacing:2px;">Running Basics Done Right</h2>
+    </div>
+    <div style="padding: 0 6% 100px;">
+      <div class="basics-grid">
+        <div class="basics-card">
+          <div class="card-icon">🔥</div>
+          <h3>Warm Up First</h3>
+          <p>3–5 minutes of walking, then dynamic movements — leg swings, high knees, walking lunges. In Atlanta summer heat, your body needs this even more to avoid muscle strains.</p>
+        </div>
+        <div class="basics-card">
+          <div class="card-icon">📈</div>
+          <h3>Increase Slowly</h3>
+          <p>Never jump mileage more than 10% per week. Atlanta's hills mean your body works harder at the same pace — factor that in.</p>
+        </div>
+        <div class="basics-card">
+          <div class="card-icon">👟</div>
+          <h3>Shoes for ATL Roads</h3>
+          <p>The BeltLine asphalt, Piedmont's pavement, and Buckhead hills all demand proper cushioning and support. Get fitted at a local running store like Phidippides or Big Peach.</p>
+        </div>
+        <div class="basics-card">
+          <div class="card-icon">💧</div>
+          <h3>Hydrate Like ATL</h3>
+          <p>Atlanta summers hit 95°F+ with high humidity. Hydrate the day before, carry water on any run over 4 miles, and consider electrolytes May–September.</p>
+        </div>
+        <div class="basics-card">
+          <div class="card-icon">🌅</div>
+          <h3>Run Early or Late</h3>
+          <p>Beat the ATL heat. Before 8AM or after 7PM during summer. Many local run clubs schedule their meetups around this — check Atlanta Track Club for events.</p>
+        </div>
+        <div class="basics-card">
+          <div class="card-icon">😴</div>
+          <h3>Recover Hard</h3>
+          <p>Rest days, sleep, easy runs. Heat training is extra taxing on your body — recovery is even more critical in a warm climate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section id="plan">
+    <div style="padding: 100px 6% 0; background: var(--dark);">
+      <div class="section-label">// Training Plan</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);letter-spacing:2px;">Beginner Weekly Plan</h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:600px;">Built for Atlanta conditions. The goal is consistency — not speed. If you're training for Peachtree, this is your foundation.</p>
+    </div>
+    <div style="padding: 0 6% 100px; background: var(--dark);">
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div class="week-label">WK 1–2</div>
+          <h3>Walk/Run Intervals</h3>
+          <p>3 days per week. 1 min jogging, 2 min walking × 8. Stay on flat terrain — BeltLine or Piedmont Park.</p>
+          <div class="plan-tip">ATL tip: Go before 8AM. Bring water even for short runs.</div>
+        </div>
+        <div class="plan-card">
+          <div class="week-label">WK 3–4</div>
+          <h3>Build the Intervals</h3>
+          <p>2 min jogging, 2 min walking × 7. Start adding small hills if your legs feel good.</p>
+          <div class="plan-tip">ATL tip: Try a lap of Chastain Park — gentle hills, perfect progression.</div>
+        </div>
+        <div class="plan-card">
+          <div class="week-label">WK 5–6</div>
+          <h3>Longer Jogging Blocks</h3>
+          <p>5 min jogging, 2 min walking × 4. Most runs should feel conversational — you should be able to talk.</p>
+          <div class="plan-tip">ATL tip: Join a local run club for accountability and route knowledge.</div>
+        </div>
+        <div class="plan-card">
+          <div class="week-label">WK 7+</div>
+          <h3>Continuous Running</h3>
+          <p>Build toward non-stop easy runs. Keep 80% of runs easy and comfortable. Speed comes later.</p>
+          <div class="plan-tip">ATL tip: If you're aiming for Peachtree, start with this plan 12 weeks out.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOES -->
+  <section id="shoes">
+    <div style="padding: 100px 6% 0;">
+      <div class="section-label">// Gear Guide</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);letter-spacing:2px;">Shoes for Your Foot Type</h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:620px;">Get fitted at <strong style="color:var(--white)">Big Peach Running Co.</strong> or <strong style="color:var(--white)">Phidippides</strong> in Atlanta — they'll analyze your gait. Use this guide as a starting point.</p>
+    </div>
+    <div style="padding: 0 6% 100px;">
+      <div class="foot-tabs">
+        <button class="tab-btn active" onclick="showTab('neutral')">Neutral Arch</button>
+        <button class="tab-btn" onclick="showTab('overpronation')">Overpronation (Flat Feet)</button>
+        <button class="tab-btn" onclick="showTab('supination')">Supination (High Arch)</button>
+      </div>
+
+      <!-- NEUTRAL -->
+      <div id="tab-neutral" class="foot-panel active">
+        <div class="foot-desc">
+          <strong>Neutral foot</strong> — your arch is medium height and your foot rolls inward slightly on landing (normal). You have the widest shoe selection available. Most shoes are built for neutral runners.
+        </div>
+        <div class="price-tiers">
+          <div class="tier">
+            <div class="tier-header budget">
+              <span class="tier-label budget">Budget</span>
+              <span class="tier-price">Under $100</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">Brooks Ghost 15</div>
+                <div class="shoe-detail">Reliable daily trainer, great cushioning for BeltLine pavement. Very beginner-friendly.</div>
+                <div class="shoe-price">~$80–90 (older models)</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">ASICS Gel-Nimbus Lite</div>
+                <div class="shoe-detail">Lightweight with decent cushioning. Good for shorter easy runs.</div>
+                <div class="shoe-price">~$75–95</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier">
+            <div class="tier-header mid-range">
+              <span class="tier-label mid-range">Mid-Range</span>
+              <span class="tier-price">$100 – $160</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">Nike Pegasus 41</div>
+                <div class="shoe-detail">ATL's most popular daily trainer. Great for Piedmont loops and BeltLine miles. Responsive and durable.</div>
+                <div class="shoe-price">~$130</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">New Balance Fresh Foam X 1080v13</div>
+                <div class="shoe-detail">Plush cushioning for long runs. Excellent for Peachtree training on hot days.</div>
+                <div class="shoe-price">~$165</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier">
+            <div class="tier-header premium">
+              <span class="tier-label premium">Premium</span>
+              <span class="tier-price">$160+</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">ASICS Metaspeed Sky+</div>
+                <div class="shoe-detail">Carbon plate race shoe. Built for Peachtree race day when you're ready to go fast.</div>
+                <div class="shoe-price">~$250</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">Saucony Endorphin Pro 4</div>
+                <div class="shoe-detail">Elite carbon racer. Fast, efficient, smooth turnover. Also great for tempo days.</div>
+                <div class="shoe-price">~$220</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OVERPRONATION -->
+      <div id="tab-overpronation" class="foot-panel">
+        <div class="foot-desc">
+          <strong>Overpronation (flat feet)</strong> — your foot rolls inward excessively on landing, putting stress on your knees, shins, and ankles. You need <strong>stability or motion control shoes</strong> to keep your foot aligned. Very common in Atlanta runners — the hills accelerate the inward roll.
+        </div>
+        <div class="price-tiers">
+          <div class="tier">
+            <div class="tier-header budget">
+              <span class="tier-label budget">Budget</span>
+              <span class="tier-price">Under $100</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">Brooks Adrenaline GTS 23</div>
+                <div class="shoe-detail">The gold standard stability shoe for beginners. GuideRails tech keeps overpronation in check.</div>
+                <div class="shoe-price">~$90–110</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">ASICS GT-1000 12</div>
+                <div class="shoe-detail">Affordable entry-level stability. Great for short runs and beginners on a budget.</div>
+                <div class="shoe-price">~$70–85</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier">
+            <div class="tier-header mid-range">
+              <span class="tier-label mid-range">Mid-Range</span>
+              <span class="tier-price">$100 – $160</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">New Balance 860v14</div>
+                <div class="shoe-detail">Best stability shoe for everyday miles. Structured but comfortable for Atlanta's hilly routes.</div>
+                <div class="shoe-price">~$130</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">Saucony Guide 17</div>
+                <div class="shoe-detail">Light, responsive stability. Great if you want a firmer, faster ride without going premium.</div>
+                <div class="shoe-price">~$130</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier">
+            <div class="tier-header premium">
+              <span class="tier-label premium">Premium</span>
+              <span class="tier-price">$160+</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">HOKA Gaviota 5</div>
+                <div class="shoe-detail">Maximum cushion + stability. Excellent for overpronators doing high mileage or long Peachtree training runs.</div>
+                <div class="shoe-price">~$180</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">Brooks Glycerin GTS 21</div>
+                <div class="shoe-detail">Plush, premium stability. One of the best long-run shoes for flat-footed ATL runners.</div>
+                <div class="shoe-price">~$165</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUPINATION -->
+      <div id="tab-supination" class="foot-panel">
+        <div class="foot-desc">
+          <strong>Supination / underpronation (high arch)</strong> — your foot rolls outward on landing, which reduces shock absorption. You need <strong>highly cushioned, flexible shoes</strong> with no extra stability features, which can make supination worse. Atlanta's hard pavement is especially tough on high-arched feet.
+        </div>
+        <div class="price-tiers">
+          <div class="tier">
+            <div class="tier-header budget">
+              <span class="tier-label budget">Budget</span>
+              <span class="tier-price">Under $100</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">Nike Revolution 7</div>
+                <div class="shoe-detail">Soft foam, flexible sole — good starter shoe for supinators on a budget. Great for BeltLine easy miles.</div>
+                <div class="shoe-price">~$65</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">Saucony Kinvara 14</div>
+                <div class="shoe-detail">Lightweight and flexible. One of the best affordable choices for high-arch runners.</div>
+                <div class="shoe-price">~$95</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier">
+            <div class="tier-header mid-range">
+              <span class="tier-label mid-range">Mid-Range</span>
+              <span class="tier-price">$100 – $160</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">HOKA Clifton 9</div>
+                <div class="shoe-detail">Maximum soft cushioning absorbs the extra impact of supination. Perfect for Atlanta road running.</div>
+                <div class="shoe-price">~$145</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">New Balance Fresh Foam X 880v14</div>
+                <div class="shoe-detail">Plush, neutral, versatile. Great for daily training runs on any ATL surface.</div>
+                <div class="shoe-price">~$140</div>
+              </div>
+            </div>
+          </div>
+          <div class="tier">
+            <div class="tier-header premium">
+              <span class="tier-label premium">Premium</span>
+              <span class="tier-price">$160+</span>
+            </div>
+            <div class="shoe-list">
+              <div class="shoe-item">
+                <div class="shoe-name">On Cloudmonster 2</div>
+                <div class="shoe-detail">Highly cushioned, flexible, springy — one of the best high-arch shoes for long efforts and Peachtree training.</div>
+                <div class="shoe-price">~$170</div>
+              </div>
+              <div class="shoe-item">
+                <div class="shoe-name">HOKA Bondi 8</div>
+                <div class="shoe-detail">The most cushioned shoe HOKA makes. Maximum protection for supinating feet on hard ATL pavement.</div>
+                <div class="shoe-price">~$165</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INJURIES -->
+  <section id="injuries">
+    <div style="padding: 100px 6% 0; background: var(--dark);">
+      <div class="section-label">// Common Issues</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);letter-spacing:2px;">Injuries to Watch For</h2>
+    </div>
+    <div style="padding: 0 6% 100px; background:var(--dark);">
+      <div class="injury-grid">
+        <div class="injury-card">
+          <div class="injury-icon">🦵</div>
+          <h3>Shin Splints</h3>
+          <p>Too much too soon, hard pavement, or worn-out shoes. Very common for ATL beginners running Peachtree Road's slight downhill grade.</p>
+          <div class="injury-tip">Prevention: slow mileage increase, proper shoes, rest days between hard runs.</div>
+          <div class="atl-note">ATL note: The downhill finish of Peachtree Road Race is a shin splint trigger — train for it.</div>
+        </div>
+        <div class="injury-card">
+          <div class="injury-icon">🦴</div>
+          <h3>Runner's Knee</h3>
+          <p>Kneecap pain from weak hips, tight muscles, or overuse. Atlanta hills intensify the stress on the knee joint.</p>
+          <div class="injury-tip">Prevention: hip and glute strengthening, gradual training, avoid sudden hill sessions.</div>
+          <div class="atl-note">ATL note: Stone Mountain's steep downhill is a notorious runner's knee trigger.</div>
+        </div>
+        <div class="injury-card">
+          <div class="injury-icon">🦶</div>
+          <h3>Achilles Pain</h3>
+          <p>Back-of-ankle pain from tight calves or sudden speed increases. The hills everywhere in Atlanta load the Achilles hard.</p>
+          <div class="injury-tip">Prevention: daily calf raises, easy warmups, no sudden sprint sessions.</div>
+        </div>
+        <div class="injury-card">
+          <div class="injury-icon">👣</div>
+          <h3>Plantar Fasciitis</h3>
+          <p>Heel/arch pain, worst in the mornings. Hard Atlanta pavement and summer heat-induced dehydration both contribute.</p>
+          <div class="injury-tip">Prevention: supportive shoes, arch stretching, calf and foot mobility work.</div>
+        </div>
+        <div class="injury-card">
+          <div class="injury-icon">🌡️</div>
+          <h3>Heat Exhaustion</h3>
+          <p>An Atlanta-specific concern. Dizziness, heavy sweating, nausea — the city's humid summers are brutally unforgiving.</p>
+          <div class="injury-tip">Prevention: run before 8AM May–Sept, carry water, know the signs, never ignore your body.</div>
+          <div class="atl-note">ATL note: If you feel dizzy on the BeltLine in July, stop immediately and find shade.</div>
+        </div>
+        <div class="injury-card">
+          <div class="injury-icon">🩺</div>
+          <h3>IT Band Syndrome</h3>
+          <p>Outer knee tightness from the iliotibial band. Very common on Atlanta's cambered roads and repetitive hill loops.</p>
+          <div class="injury-tip">Prevention: hip strengthening, foam rolling the IT band, vary your running surfaces.</div>
+          <div class="atl-note">ATL note: Running the same side of cambered roads constantly makes this much worse.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRENGTH -->
+  <section class="strength-section">
+    <div class="section-label">// Strength Work</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);letter-spacing:2px;">Strength for ATL Hills</h2>
+    <p style="color:var(--muted);font-size:16px;margin-top:12px;max-width:620px;">Atlanta's terrain demands strong legs and hips. These moves build the engine to handle hills and pavement without breaking down.</p>
+    <div class="ex-grid">
+      <div class="ex-item"><span class="ex-icon">🏋️</span>Squats</div>
+      <div class="ex-item"><span class="ex-icon">🦵</span>Lunges</div>
+      <div class="ex-item"><span class="ex-icon">🦶</span>Calf Raises</div>
+      <div class="ex-item"><span class="ex-icon">🍑</span>Glute Bridges</div>
+      <div class="ex-item"><span class="ex-icon">💪</span>Planks</div>
+      <div class="ex-item"><span class="ex-icon">⚡</span>Side Planks</div>
+      <div class="ex-item"><span class="ex-icon">🧘</span>Single-Leg Balance</div>
+      <div class="ex-item"><span class="ex-icon">🪜</span>Step-Ups</div>
+      <div class="ex-item"><span class="ex-icon">🔄</span>Hip Circles</div>
+      <div class="ex-item"><span class="ex-icon">🏃</span>Hill Strides</div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist">
+    <div style="padding: 100px 6%; background: var(--dark);">
+      <div class="section-label">// Pre-Run Check</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,72px);letter-spacing:2px;margin-bottom:12px;">Safety Checklist</h2>
+      <p style="color:var(--muted);font-size:16px;max-width:580px;margin-bottom:48px;">Run through this before every ATL run — especially on hot summer days or when pushing mileage.</p>
+      <div class="checklist-inner">
+        <label class="check-item"><input type="checkbox"> I warmed up for at least 3–5 minutes.</label>
+        <label class="check-item"><input type="checkbox"> My shoes fit and feel supportive for today's route.</label>
+        <label class="check-item"><input type="checkbox"> I'm not increasing weekly mileage by more than 10%.</label>
+        <label class="check-item"><input type="checkbox"> I can talk while running at an easy pace.</label>
+        <label class="check-item"><input type="checkbox"> I have a cooldown and recovery plan.</label>
+        <label class="check-item"><input type="checkbox"> I'm hydrated (especially important in ATL heat, May–Sept).</label>
+        <label class="check-item"><input type="checkbox"> I've told someone my route or I'm running with a group.</label>
+        <div class="check-actions">
+          <button class="btn-primary" onclick="checkReady()">Check My Readiness</button>
+        </div>
+        <p id="result"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">RunStrong ATL</div>
+    <div class="footer-text">Train smart. Beat the heat. Run ATL. 🍑</div>
+    <div class="footer-text" style="font-family:'Space Mono',monospace;font-size:11px;">© 2026 RunStrong</div>
+  </footer>
+
+  <script>
+    function showTab(type) {
+      document.querySelectorAll('.foot-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + type).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function checkReady() {
+      const boxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+      let checked = 0;
+      boxes.forEach(b => { if (b.checked) checked++; });
+      const result = document.getElementById('result');
+      const total = boxes.length;
+      if (checked === total) {
+        result.textContent = '✅ You\'re ready to run ATL smart today.';
+        result.style.color = '#c8ff00';
+      } else if (checked >= total - 2) {
+        result.textContent = '⚠️ Almost there — knock out those last steps first.';
+        result.style.color = '#ffcc00';
+      } else {
+        result.textContent = '🛑 Slow down. Complete more safety steps before heading out.';
+        result.style.color = '#ff3b3b';
+      }
+    }
+  </script>
+</body>
+</html>
