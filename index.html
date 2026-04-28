@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RunStrong | Running Injury Prevention</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <nav>
+      <h2>RunStrong</h2>
+      <div>
+        <a href="#basics">Basics</a>
+        <a href="#plan">Beginner Plan</a>
+        <a href="#injuries">Injuries</a>
+        <a href="#checklist">Checklist</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <h1>Start Running Without Getting Hurt</h1>
+      <p>
+        A sporty beginner guide to warming up, building mileage safely,
+        choosing shoes, recovering properly, and preventing common running injuries.
+      </p>
+      <button onclick="scrollToChecklist()">Get Your Safety Checklist</button>
+    </div>
+  </header>
+
+  <section id="basics" class="section">
+    <h2>Running Injury Prevention Basics</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Warm Up First</h3>
+        <p>
+          Begin with 3–5 minutes of walking or light jogging, then add dynamic movements
+          like leg swings, high knees, and walking lunges.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Increase Slowly</h3>
+        <p>
+          Do not suddenly double your mileage. A safe rule is to increase weekly distance
+          by no more than about 10%.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Use Proper Shoes</h3>
+        <p>
+          Running shoes help absorb impact. Replace worn-out shoes when they lose support
+          or cushioning.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Recover Hard</h3>
+        <p>
+          Rest days, sleep, hydration, and easy runs help your body adapt instead of breaking down.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan" class="section dark">
+    <h2>Beginner Weekly Running Plan</h2>
+    <p class="section-intro">
+      This plan is for someone just getting into running. The goal is consistency, not speed.
+    </p>
+
+    <div class="timeline">
+      <div>
+        <h3>Week 1–2</h3>
+        <p>Run/walk 3 days per week. Example: 1 minute jogging, 2 minutes walking, repeat 8 times.</p>
+      </div>
+
+      <div>
+        <h3>Week 3–4</h3>
+        <p>Increase jogging time slowly. Example: 2 minutes jogging, 2 minutes walking, repeat 7 times.</p>
+      </div>
+
+      <div>
+        <h3>Week 5–6</h3>
+        <p>Try longer easy runs. Example: 5 minutes jogging, 2 minutes walking, repeat 4 times.</p>
+      </div>
+
+      <div>
+        <h3>Week 7+</h3>
+        <p>Build toward continuous running, but keep most runs easy and conversational.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="injuries" class="section">
+    <h2>Common Running Injuries</h2>
+
+    <div class="injury-grid">
+      <div class="injury-box">
+        <h3>Shin Splints</h3>
+        <p>Often caused by doing too much too soon, poor shoes, or hard surfaces.</p>
+        <span>Prevention: slow mileage increase, better shoes, rest days.</span>
+      </div>
+
+      <div class="injury-box">
+        <h3>Runner’s Knee</h3>
+        <p>Pain around the kneecap, often linked to weak hips, tight muscles, or overuse.</p>
+        <span>Prevention: hip/glute strength, gradual training, avoid sudden hills.</span>
+      </div>
+
+      <div class="injury-box">
+        <h3>Achilles Pain</h3>
+        <p>Pain near the back of the ankle, often from tight calves or sudden speed work.</p>
+        <span>Prevention: calf raises, easy warmups, avoid sudden sprinting.</span>
+      </div>
+
+      <div class="injury-box">
+        <h3>Plantar Fasciitis</h3>
+        <p>Heel or arch pain that can be worse in the morning.</p>
+        <span>Prevention: supportive shoes, foot mobility, calf stretching.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <h2>Strength Moves for Runners</h2>
+    <p class="section-intro">
+      Strength training helps protect your knees, hips, ankles, and feet.
+    </p>
+
+    <div class="exercise-list">
+      <div>Squats</div>
+      <div>Lunges</div>
+      <div>Calf Raises</div>
+      <div>Glute Bridges</div>
+      <div>Planks</div>
+      <div>Side Planks</div>
+      <div>Single-Leg Balance</div>
+      <div>Step-Ups</div>
+    </div>
+  </section>
+
+  <section id="checklist" class="section checklist">
+    <h2>Pre-Run Safety Checklist</h2>
+
+    <label><input type="checkbox"> I warmed up for at least 3–5 minutes.</label>
+    <label><input type="checkbox"> My shoes feel supportive and comfortable.</label>
+    <label><input type="checkbox"> I am not increasing mileage too quickly.</label>
+    <label><input type="checkbox"> I can talk while running at an easy pace.</label>
+    <label><input type="checkbox"> I have a cooldown and recovery plan.</label>
+
+    <button onclick="checkProgress()">Check My Readiness</button>
+    <p id="result"></p>
+  </section>
+
+  <footer>
+    <p>RunStrong © 2026 | Train smart. Stay healthy. Keep running.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
