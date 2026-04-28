@@ -8,7 +8,7 @@ function checkProgress() {
   const checkboxes = document.querySelectorAll(".checklist input");
   let checked = 0;
 
-  checkboxes.forEach(function(box) {
+  checkboxes.forEach(box => {
     if (box.checked) {
       checked++;
     }
